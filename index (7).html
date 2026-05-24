@@ -1,0 +1,883 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MANUELPHILMS · Cinematic Videography Accra</title>
+<meta name="description" content="Concerts, weddings, brand films & editorial video by MANUELPHILMS. Cinematic storytelling based in Accra, available worldwide." />
+<meta property="og:title" content="MANUELPHILMS · Cinematic Videography" />
+<meta property="og:description" content="Concerts, weddings, brand films & editorial video." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --background:#0a0505; --foreground:#f0e4db;
+    --surface:#150808; --surface-2:#1e0d0d;
+    --gold:#e8622a; --gold-light:#ff8c5a;
+    --cream:#fdf0e8; --cream-2:#f5ddd0;
+    --text:#f0e4db; --text-muted:#b89080;
+    --border:rgba(232,98,42,0.2);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;border-color:var(--border)}
+  html{scroll-behavior:smooth}
+  body{font-family:'DM Sans',sans-serif;background:var(--background);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6}
+  h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:300;line-height:1.1}
+  em{font-style:italic;color:var(--gold)}
+  a{color:inherit;text-decoration:none}
+  img,video{display:block;max-width:100%}
+  ul{list-style:none}
+
+  .container{max-width:1280px;margin:0 auto;padding:0 1.5rem}
+  @media(min-width:768px){.container{padding:0 3rem}}
+
+  .eyebrow{font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold)}
+  .gold{color:var(--gold)} .cream{color:var(--cream)} .muted{color:var(--text-muted)}
+
+  .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.8rem;border-radius:2px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;font-family:inherit;border:1px solid var(--gold);transition:all .25s;text-decoration:none}
+  .btn-gold{background:var(--gold);color:var(--background)}
+  .btn-gold:hover{background:var(--gold-light);border-color:var(--gold-light);transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--gold)}
+  .btn-ghost:hover{background:var(--gold);color:var(--background)}
+
+  /* NAV */
+  nav.top{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;transition:background .3s;background:linear-gradient(to bottom,rgba(10,5,5,.95),transparent)}
+  @media(min-width:768px){nav.top{padding:1.25rem 3rem}}
+  nav.top.scrolled{background:rgba(10,5,5,.95);box-shadow:0 1px 0 var(--border)}
+  .logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;letter-spacing:.12em;color:var(--gold)}
+  .logo em{color:var(--gold)}
+  .nav-links{display:none;gap:2.25rem}
+  @media(min-width:768px){.nav-links{display:flex}}
+  .nav-links a{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);position:relative;padding-bottom:.25rem;transition:color .2s}
+  .nav-links a:hover,.nav-links a.active{color:var(--gold)}
+  .nav-links a.active::after{content:'';position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--gold)}
+  .nav-book{display:none}
+  @media(min-width:768px){.nav-book{display:inline-flex;padding:.5rem 1.25rem!important}}
+  .burger{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer}
+  @media(min-width:768px){.burger{display:none}}
+  .burger span{width:24px;height:1px;background:var(--gold);transition:transform .3s,opacity .3s}
+  .burger.open span:nth-child(1){transform:rotate(45deg) translate(4px,5px)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-5px)}
+  .mobile-menu{position:fixed;inset:0;z-index:40;background:rgba(10,5,5,.98);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;opacity:0;pointer-events:none;transition:opacity .3s}
+  .mobile-menu.open{opacity:1;pointer-events:auto}
+  .mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--cream);letter-spacing:.08em}
+  .mobile-menu a:hover{color:var(--gold)}
+
+  /* HERO */
+  .hero{position:relative;height:100vh;min-height:640px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;animation:slowZoom 18s ease-in-out infinite alternate}
+  .hero-bg img{width:100%;height:100%;object-fit:cover}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,5,5,.85),rgba(10,5,5,.4),rgba(232,98,42,.15))}
+  .hero-content{position:relative;z-index:10;text-align:center;max-width:48rem;padding:0 1.5rem;animation:fadeUp .8s ease forwards}
+  .hero h1{font-size:clamp(3rem,8vw,6rem);color:var(--cream);letter-spacing:-.02em;margin-top:1.5rem}
+  .hero p.sub{margin-top:1.5rem;color:var(--text-muted);font-size:1.05rem;max-width:34rem;margin-left:auto;margin-right:auto}
+  .hero-ctas{margin-top:2.5rem;display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
+  .scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:var(--text-muted);font-size:.65rem;letter-spacing:.4em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:.75rem}
+  .scroll-indicator::before{content:'';width:1px;height:3rem;background:rgba(232,98,42,.4)}
+
+  /* SECTIONS */
+  section{padding:6rem 0}
+  .section-head{text-align:center;max-width:42rem;margin:0 auto 4rem}
+  .section-head h2{font-size:clamp(2.25rem,5vw,3.5rem);color:var(--cream);margin-top:1rem}
+  .section-head p{margin-top:1rem;color:var(--text-muted)}
+
+  /* STATS */
+  .stats{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:3rem 0}
+  .stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;text-align:center}
+  @media(min-width:768px){.stats-grid{grid-template-columns:repeat(4,1fr)}}
+  .stat-num{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,3rem);color:var(--gold)}
+  .stat-label{margin-top:.5rem;font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-muted)}
+
+  /* SERVICES */
+  .grid-4{display:grid;gap:1.5rem;grid-template-columns:1fr}
+  @media(min-width:640px){.grid-4{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1024px){.grid-4{grid-template-columns:repeat(4,1fr)}}
+  .service{position:relative;padding:2rem;background:var(--surface);border:1px solid var(--border);transition:all .3s;overflow:hidden}
+  .service:hover{border-color:var(--gold);transform:translateY(-4px)}
+  .service .icon{font-size:1.875rem;margin-bottom:1rem}
+  .service h3{font-size:1.5rem;color:var(--cream);margin-bottom:.5rem}
+  .service p{font-size:.875rem;color:var(--text-muted)}
+  .service::after{content:'';position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--gold);transition:width .5s}
+  .service:hover::after{width:100%}
+
+  /* GALLERY */
+  .filters{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-bottom:2.5rem}
+  .filter{padding:.5rem 1.25rem;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--border);background:transparent;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:inherit}
+  .filter:hover{color:var(--gold);border-color:var(--gold)}
+  .filter.active{background:var(--gold);color:var(--background);border-color:var(--gold)}
+  .gallery-grid{display:grid;gap:1.25rem;grid-template-columns:1fr}
+  @media(min-width:640px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1024px){.gallery-grid{grid-template-columns:repeat(3,1fr)}}
+  .video-card{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--surface);border:1px solid var(--border);cursor:pointer;transition:border-color .2s}
+  .video-card:hover{border-color:var(--gold)}
+  .video-card video{width:100%;height:100%;object-fit:cover;filter:brightness(.75);transition:all .7s}
+  .video-card:hover video{filter:brightness(1);transform:scale(1.05)}
+  .video-card .grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,5,5,.9),transparent 60%)}
+  .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:opacity .3s}
+  .video-card:hover .play{opacity:0}
+  .play-circle{width:4rem;height:4rem;border-radius:50%;border:1px solid var(--gold);background:rgba(10,5,5,.4);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.25rem;padding-left:4px}
+  .card-meta{position:absolute;left:0;right:0;bottom:0;padding:1rem;text-align:left}
+  .card-meta .title{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--cream)}
+  .card-meta .cat{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-top:.25rem}
+
+  /* GALLERY GROUP CARDS */
+  .group-card{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--surface);border:1px solid var(--border);cursor:pointer;transition:border-color .2s}
+  .group-card:hover{border-color:var(--gold)}
+  .group-card video{width:100%;height:100%;object-fit:cover;filter:brightness(.7);transition:all .7s}
+  .group-card:hover video{filter:brightness(1);transform:scale(1.05)}
+  .group-card .grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,5,5,.92),transparent 55%)}
+  .group-card .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:opacity .3s}
+  .group-card:hover .play{opacity:0}
+  .group-card .card-meta{position:absolute;left:0;right:0;bottom:0;padding:1rem;text-align:left}
+  .group-card .card-meta .title{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--cream)}
+  .group-card .card-meta .cat{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-top:.25rem}
+  .group-badge{position:absolute;top:.75rem;right:.75rem;background:var(--gold);color:var(--background);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;padding:.25rem .6rem;font-family:'DM Sans',sans-serif;font-weight:500}
+
+  /* EXPANDED GROUP OVERLAY */
+  .group-expand{position:fixed;inset:0;z-index:150;background:rgba(10,5,5,.97);display:none;flex-direction:column;padding:1.5rem;overflow-y:auto}
+  .group-expand.open{display:flex}
+  .group-expand-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-shrink:0}
+  .group-expand-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,4vw,2.25rem);color:var(--cream)}
+  .group-expand-title em{color:var(--gold)}
+  .group-expand-close{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:.5rem 1rem;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;font-family:inherit;transition:all .2s;flex-shrink:0}
+  .group-expand-close:hover{background:var(--gold);color:var(--background)}
+  .group-expand-grid{display:grid;gap:1.25rem;grid-template-columns:1fr}
+  @media(min-width:640px){.group-expand-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1024px){.group-expand-grid{grid-template-columns:repeat(3,1fr)}}
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(10,5,5,.97);display:none;align-items:center;justify-content:center;padding:1rem}
+  @media(min-width:768px){.lightbox{padding:3rem}}
+  .lightbox.open{display:flex}
+  .lightbox-close{position:absolute;top:1.5rem;right:1.5rem;color:var(--gold);border:1px solid var(--gold);padding:.5rem 1rem;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;background:transparent;cursor:pointer;font-family:inherit;transition:all .2s}
+  .lightbox-close:hover{background:var(--gold);color:var(--background)}
+  .lightbox-inner{width:100%;max-width:64rem}
+  .lightbox video{width:100%;aspect-ratio:16/9;background:#000;border-radius:2px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+  .lightbox .meta{margin-top:1rem;display:flex;justify-content:space-between;align-items:center;font-size:.875rem}
+  .lightbox .meta .t{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--cream)}
+  .lightbox .meta .c{color:var(--gold);font-size:.65rem;letter-spacing:.25em;text-transform:uppercase}
+
+  /* ABOUT */
+  .about{display:grid;gap:3rem;align-items:center}
+  @media(min-width:1024px){.about{grid-template-columns:5fr 7fr}}
+  .about-img-wrap{display:flex;justify-content:center}
+  @media(min-width:1024px){.about-img-wrap{justify-content:flex-start}}
+  .about-img{position:relative;width:min(280px,100%)}
+  @media(min-width:1024px){.about-img{width:min(300px,100%)}}
+  .about-img::before{content:'';position:absolute;inset:-0.75rem;border:1px solid rgba(232,98,42,.3);z-index:-1;border-radius:2px}
+  .about-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 55%,rgba(10,5,5,.45));pointer-events:none;border-radius:2px}
+  .about-img img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:2px;display:block}
+  .about-badge{position:absolute;bottom:-0.875rem;right:-0.875rem;background:var(--gold);color:var(--background);padding:.55rem 1.1rem;font-family:'Cormorant Garamond',serif;font-size:.95rem;letter-spacing:.1em;z-index:2}
+  /* Film-strip accent */
+  .about-film{position:absolute;top:1.1rem;left:-1.1rem;display:flex;flex-direction:column;gap:3px;z-index:2}
+  .about-film span{display:block;width:12px;height:8px;border:1px solid rgba(232,98,42,.5);background:rgba(10,5,5,.65);border-radius:1px}
+  /* Awards chip */
+  .about-award{position:absolute;top:.9rem;right:.9rem;z-index:3;background:rgba(10,5,5,.8);border:1px solid rgba(232,98,42,.45);padding:.35rem .65rem;backdrop-filter:blur(6px);text-align:center}
+  .about-award .aw-num{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--gold);line-height:1}
+  .about-award .aw-lab{font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);margin-top:.1rem}
+  .about h2{font-size:clamp(2rem,5vw,3rem);color:var(--cream);margin-top:1rem;line-height:1.15}
+  .about-body{margin-top:1.5rem;color:var(--text-muted)}
+  .about-body p+p{margin-top:1rem}
+  .skills{margin-top:2.5rem}
+  .skill+.skill{margin-top:1.25rem}
+  .skill-head{display:flex;justify-content:space-between;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.5rem}
+  .skill-head .l{color:var(--cream)}
+  .skill-head .v{color:var(--gold)}
+  .skill-bar{height:1px;background:var(--border);position:relative}
+  .skill-bar span{position:absolute;inset:0 auto 0 0;background:var(--gold)}
+
+  /* TESTIMONIALS */
+  .testimonials{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .grid-3{display:grid;gap:2rem;grid-template-columns:1fr}
+  @media(min-width:768px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+  figure.quote{position:relative;background:var(--background);border:1px solid var(--border);padding:2rem}
+  figure.quote .mark{position:absolute;top:-1rem;left:1.5rem;font-family:'Cormorant Garamond',serif;font-size:3.75rem;color:var(--gold);line-height:1}
+  figure.quote blockquote{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--cream);font-size:1.125rem;line-height:1.5}
+  figure.quote figcaption{margin-top:1.5rem;font-size:.875rem}
+  figure.quote .name{color:var(--gold);letter-spacing:.05em}
+  figure.quote .role{color:var(--text-muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.2em;margin-top:.25rem}
+
+  /* PRICING */
+  .pricing-grid{display:grid;gap:1.5rem;grid-template-columns:1fr}
+  @media(min-width:768px){.pricing-grid{grid-template-columns:repeat(3,1fr)}}
+  .tier{position:relative;padding:2rem;border:1px solid var(--border);background:var(--surface);transition:all .3s}
+  .tier:hover{border-color:rgba(232,98,42,.5)}
+  .tier.featured{border-color:var(--gold);background:var(--surface-2);box-shadow:0 30px 80px rgba(232,98,42,.15)}
+  @media(min-width:768px){.tier.featured{transform:translateY(-1rem)}}
+  .tier .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--background);padding:.25rem 1rem;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase}
+  .tier .name{font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-muted)}
+  .tier .price{margin-top:1rem;font-family:'Cormorant Garamond',serif;font-size:2.25rem;color:var(--cream)}
+  .tier .price small{font-family:'DM Sans',sans-serif;font-size:.875rem;color:var(--text-muted);margin-left:.25rem}
+  .tier hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0}
+  .tier ul li{display:flex;gap:.75rem;font-size:.875rem;color:var(--text-muted)}
+  .tier ul li+li{margin-top:.75rem}
+  .tier ul li::before{content:'✦';color:var(--gold)}
+  .tier .btn{margin-top:2rem;width:100%;justify-content:center;display:flex}
+
+  /* CONTACT / BOOK */
+  .book-grid{display:grid;gap:3rem}
+  @media(min-width:1024px){.book-grid{grid-template-columns:1fr 1.2fr}}
+  .book-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.25rem,5vw,3rem);color:var(--cream);margin-top:1rem;line-height:1.15}
+  .book-info{margin-top:2.5rem;display:flex;flex-direction:column;gap:1.25rem}
+  .book-info-row{display:flex;gap:1rem;align-items:flex-start}
+  .book-info-row .ic{font-size:1.25rem}
+  .book-info-row .lab{color:var(--gold);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase}
+  .book-info-row .val{color:var(--cream);margin-top:.25rem}
+  form.book-form{background:var(--surface);border:1px solid var(--border);padding:2rem;display:flex;flex-direction:column;gap:1rem}
+  form.book-form .row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  form.book-form input,form.book-form select,form.book-form textarea{width:100%;background:var(--surface-2);border:1px solid var(--border);color:var(--cream);padding:.75rem 1rem;font-size:.875rem;font-family:inherit;outline:none;transition:border-color .2s}
+  form.book-form input:focus,form.book-form select:focus,form.book-form textarea:focus{border-color:var(--gold)}
+  form.book-form textarea{resize:vertical;min-height:130px}
+  form.book-form button{margin-top:.5rem}
+
+  /* CONTACT CARDS */
+  .contact-grid{display:grid;gap:1rem;grid-template-columns:1fr;max-width:60rem;margin:0 auto}
+  @media(min-width:640px){.contact-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1024px){.contact-grid{grid-template-columns:repeat(3,1fr)}}
+  .contact-card{padding:1.5rem;background:var(--surface);border:1px solid var(--border);transition:all .2s;height:100%}
+  .contact-card:hover{border-color:var(--gold);transform:translateY(-4px)}
+  .contact-card .ic{font-size:1.5rem;margin-bottom:.75rem}
+  .contact-card .lab{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+  .contact-card .val{color:var(--cream);margin-top:.25rem}
+
+  /* CTA */
+  .cta{padding:8rem 0;text-align:center}
+  .cta h2{font-size:clamp(2.25rem,6vw,4rem);color:var(--cream);max-width:48rem;margin:0 auto;line-height:1.15}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--border);background:var(--surface);margin-top:6rem}
+  .footer-grid{display:grid;gap:3rem;padding:4rem 0;grid-template-columns:1fr}
+  @media(min-width:768px){.footer-grid{grid-template-columns:2fr 1fr 1fr}}
+  .footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.875rem;letter-spacing:.12em;color:var(--gold)}
+  .footer-tag{margin-top:1rem;color:var(--text-muted);font-size:.875rem;max-width:24rem}
+  .socials{display:flex;gap:.75rem;margin-top:1.5rem;flex-wrap:wrap}
+  .socials a{padding:.5rem .75rem;border:1px solid var(--border);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);transition:all .2s}
+  .socials a:hover{color:var(--gold);border-color:var(--gold)}
+  .footer-col h4{color:var(--gold);font-family:'DM Sans',sans-serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:1rem;font-weight:500}
+  .footer-col ul li{font-size:.875rem;color:var(--text-muted);margin-bottom:.5rem}
+  .footer-col a:hover{color:var(--gold)}
+  .copyright{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;font-size:.72rem;color:var(--text-muted);letter-spacing:.15em}
+
+  /* TICKER STRIP */
+  .ticker-wrap{overflow:hidden;white-space:nowrap;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.65rem 0;background:var(--surface-2)}
+  .ticker-inner{display:inline-flex;gap:0;animation:ticker 28s linear infinite}
+  .ticker-inner:hover{animation-play-state:paused}
+  .ticker-item{display:inline-flex;align-items:center;gap:1.5rem;padding:0 2rem;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text-muted)}
+  .ticker-item .dot{color:var(--gold);font-size:.5rem}
+  @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+  /* GRAIN */
+  .grain{position:fixed;inset:0;z-index:999;pointer-events:none;opacity:.028;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px;animation:grainShift 0.5s steps(1) infinite}
+  @keyframes grainShift{0%{background-position:0 0}20%{background-position:-30px 10px}40%{background-position:20px -20px}60%{background-position:-10px 30px}80%{background-position:25px -10px}100%{background-position:0 0}}
+
+  /* anchor offset */
+  section[id]{scroll-margin-top:80px}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes slowZoom{from{transform:scale(1)}to{transform:scale(1.08)}}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<!-- NAV -->
+<nav class="top" id="topNav">
+  <a href="#home" class="logo">MANUEL<em>philms</em></a>
+  <ul class="nav-links">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#book" class="btn btn-ghost nav-book">Book now</a>
+  <button class="burger" id="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home">Home</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#about">About</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#contact">Contact</a>
+  <a href="#book">Book a Session</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"><img src="hero.jpg" alt="Videographer at a concert" /></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="eyebrow">Concerts · Weddings · Brand Films</p>
+    <h1>Stories told <em>in motion</em><br/>and <em>in light</em></h1>
+    <p class="sub">Cinematic videography that captures the energy of a moment and turns it into something you can rewatch for years.</p>
+    <div class="hero-ctas">
+      <a href="#gallery" class="btn btn-gold">Watch the Reel →</a>
+      <a href="#book" class="btn btn-ghost">Book a Session</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">Scroll</div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div><div class="stat-num">320+</div><div class="stat-label">Films Delivered</div></div>
+      <div><div class="stat-num">7</div><div class="stat-label">Years Behind the Lens</div></div>
+      <div><div class="stat-num">48</div><div class="stat-label">Cities Filmed In</div></div>
+      <div><div class="stat-num">100%</div><div class="stat-label">Client Satisfaction</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap" id="tickerWrap">
+  <div class="ticker-inner">
+    <span class="ticker-item">Concerts <span class="dot">✦</span></span>
+    <span class="ticker-item">Wedding Films <span class="dot">✦</span></span>
+    <span class="ticker-item">Brand Stories <span class="dot">✦</span></span>
+    <span class="ticker-item">Event Coverage <span class="dot">✦</span></span>
+    <span class="ticker-item">Music Videos <span class="dot">✦</span></span>
+    <span class="ticker-item">Documentaries <span class="dot">✦</span></span>
+    <span class="ticker-item">Accra · Ghana <span class="dot">✦</span></span>
+    <span class="ticker-item">Available Worldwide <span class="dot">✦</span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item">Concerts <span class="dot">✦</span></span>
+    <span class="ticker-item">Wedding Films <span class="dot">✦</span></span>
+    <span class="ticker-item">Brand Stories <span class="dot">✦</span></span>
+    <span class="ticker-item">Event Coverage <span class="dot">✦</span></span>
+    <span class="ticker-item">Music Videos <span class="dot">✦</span></span>
+    <span class="ticker-item">Documentaries <span class="dot">✦</span></span>
+    <span class="ticker-item">Accra · Ghana <span class="dot">✦</span></span>
+    <span class="ticker-item">Available Worldwide <span class="dot">✦</span></span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">What I Shoot</p>
+      <h2>Video <em>Services</em></h2>
+      <p>From intimate ceremonies to sold-out arenas — full-service production, direction and edit.</p>
+    </div>
+    <div class="grid-4">
+      <div class="service"><div class="icon">🎬</div><h3>Music Videos</h3><p>Concept-driven music films with cinematic lighting and bold edits.</p></div>
+      <div class="service"><div class="icon">💍</div><h3>Weddings</h3><p>Wedding films that feel like memory — emotional, unhurried, beautifully cut.</p></div>
+      <div class="service"><div class="icon">🎙️</div><h3>Brand Films</h3><p>Brand stories, commercials and product launches that move people to act.</p></div>
+      <div class="service"><div class="icon">🎉</div><h3>Events</h3><p>Festivals, galas and live events captured with multi-cam coverage.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">The Reel</p>
+      <h2>The <em>Gallery</em></h2>
+      <p>A selection of recent films. Tap any frame to watch.</p>
+    </div>
+    <div class="filters" id="filters">
+      <button class="filter active" data-cat="all">All</button>
+      <button class="filter" data-cat="music">Music</button>
+      <button class="filter" data-cat="wedding">Weddings</button>
+      <button class="filter" data-cat="brand">Brand Films</button>
+      <button class="filter" data-cat="event">Events</button>
+    </div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about">
+      <div class="about-img-wrap">
+        <div class="about-img">
+          <img src="about.jpg" alt="Filmmaker portrait" />
+          <div class="about-badge">Est. 2018</div>
+          <div class="about-film">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="about-award">
+            <div class="aw-num">7+</div>
+            <div class="aw-lab">Years</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">The Filmmaker</p>
+        <h2>A Passion for <em>Moving Pictures</em></h2>
+        <div class="about-body">
+          <p>I started with a borrowed handycam at 16 — filming friends, recitals, anything that moved. Seven years and three cameras later, I run a small studio out of Accra building cinematic films for artists, couples and brands across West Africa and beyond.</p>
+          <p>My work lives in the in-between — the breath before the first note, the look across the aisle, the unplanned laugh. Big productions have their place, but the moments worth keeping usually aren't scripted.</p>
+        </div>
+        <div class="skills">
+          <div class="skill"><div class="skill-head"><span class="l">Direction</span><span class="v">95%</span></div><div class="skill-bar"><span style="width:95%"></span></div></div>
+          <div class="skill"><div class="skill-head"><span class="l">Cinematography</span><span class="v">98%</span></div><div class="skill-bar"><span style="width:98%"></span></div></div>
+          <div class="skill"><div class="skill-head"><span class="l">Color & Edit</span><span class="v">92%</span></div><div class="skill-bar"><span style="width:92%"></span></div></div>
+          <div class="skill"><div class="skill-head"><span class="l">Sound Design</span><span class="v">85%</span></div><div class="skill-bar"><span style="width:85%"></span></div></div>
+        </div>
+        <a href="#book" class="btn btn-gold" style="margin-top:2.5rem">Work with me →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Kind Words</p>
+      <h2>From the <em>People</em></h2>
+    </div>
+    <div class="grid-3">
+      <figure class="quote">
+        <span class="mark">“</span>
+        <blockquote>Our wedding film genuinely felt like a movie. I cried, my mother cried, our friends cried.</blockquote>
+        <figcaption><div class="name">Ama & Kojo</div><div class="role">Wedding clients</div></figcaption>
+      </figure>
+      <figure class="quote">
+        <span class="mark">“</span>
+        <blockquote>The brand film exceeded everything we briefed. Sales doubled the week we launched it.</blockquote>
+        <figcaption><div class="name">Selasi Mensah</div><div class="role">Founder, Kente Collective</div></figcaption>
+      </figure>
+      <figure class="quote">
+        <span class="mark">“</span>
+        <blockquote>Best concert recap I've ever had. Captured the energy perfectly.</blockquote>
+        <figcaption><div class="name">Kwesi Arthur</div><div class="role">Recording artist</div></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Investment</p>
+      <h2>Simple, Transparent <em>Pricing</em></h2>
+      <p>Every project is unique — these are starting points. Larger productions, multi-day shoots and ad campaigns are quoted on request.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="tier">
+        <div class="name">Essential</div>
+        <div class="price">GH₵ 3,500<small>/ project</small></div>
+        <hr/>
+        <ul>
+          <li>Up to 4 hours of coverage</li>
+          <li>Single-camera setup</li>
+          <li>60-second highlight reel</li>
+          <li>Royalty-free music</li>
+          <li>Online HD delivery in 14 days</li>
+        </ul>
+        <a href="#book" class="btn btn-ghost">Book Essential</a>
+      </div>
+      <div class="tier featured">
+        <div class="badge">Most Popular</div>
+        <div class="name">Signature</div>
+        <div class="price">GH₵ 7,500<small>/ project</small></div>
+        <hr/>
+        <ul>
+          <li>Up to 8 hours of coverage</li>
+          <li>Two-camera multi-angle setup</li>
+          <li>3-minute cinematic film</li>
+          <li>Full color grade & sound mix</li>
+          <li>Drone aerial footage included</li>
+          <li>4K delivery in 21 days</li>
+        </ul>
+        <a href="#book" class="btn btn-gold">Book Signature</a>
+      </div>
+      <div class="tier">
+        <div class="name">Premium</div>
+        <div class="price">GH₵ 15,000<small>/ project</small></div>
+        <hr/>
+        <ul>
+          <li>Full-day coverage (12 hrs)</li>
+          <li>Three-camera crew + audio op</li>
+          <li>8–12 minute feature film</li>
+          <li>Drone + gimbal + sliders</li>
+          <li>Pre-production planning</li>
+          <li>Same-day social teaser</li>
+          <li>Raw footage archive</li>
+        </ul>
+        <a href="#book" class="btn btn-ghost">Book Premium</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section id="book" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="book-grid">
+      <div>
+        <p class="eyebrow">Get in Touch</p>
+        <h2 class="book-h1">Let's Create Something <em>Cinematic</em></h2>
+        <p style="margin-top:1rem;color:var(--text-muted)">Fill out the form and I'll get back to you on WhatsApp within 2 hours during business hours.</p>
+        <div class="book-info">
+          <div class="book-info-row"><div class="ic">📍</div><div><div class="lab">Location</div><div class="val">Accra, Ghana (nationwide & international)</div></div></div>
+          <div class="book-info-row"><div class="ic">📞</div><div><div class="lab">WhatsApp</div><div class="val">+233 20 749 2996</div></div></div>
+          <div class="book-info-row"><div class="ic">📧</div><div><div class="lab">Email</div><div class="val">hello@manuelphilms.com</div></div></div>
+          <div class="book-info-row"><div class="ic">🕐</div><div><div class="lab">Response</div><div class="val">Within 2 hours on WhatsApp</div></div></div>
+        </div>
+      </div>
+      <form class="book-form" id="bookForm">
+        <div class="row">
+          <input required name="first" placeholder="First name" />
+          <input required name="last" placeholder="Last name" />
+        </div>
+        <input required type="tel" name="phone" placeholder="+233 XX XXX XXXX" />
+        <input required type="email" name="email" placeholder="you@email.com" />
+        <div class="row">
+          <select name="type">
+            <option>Music Video</option><option>Wedding Film</option><option>Brand Film</option>
+            <option>Event Coverage</option><option>Documentary</option><option>Other</option>
+          </select>
+          <input type="date" name="date" />
+        </div>
+        <select name="pkg">
+          <option>Essential</option><option>Signature</option><option>Premium</option><option>Custom Quote</option>
+        </select>
+        <textarea required name="message" rows="5" placeholder="Tell me about the project — vibe, location, story..."></textarea>
+        <button type="submit" class="btn btn-gold" style="justify-content:center">Send via WhatsApp →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Reach Out</p>
+      <h2>Let's <em>Connect</em></h2>
+      <p>Whether it's a quick question or a full project brief — I read every message.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card"><div class="ic">📍</div><div class="lab">Studio</div><div class="val">East Legon, Accra, Ghana</div></div>
+      <a class="contact-card" href="https://wa.me/233207492996"><div class="ic">📞</div><div class="lab">WhatsApp</div><div class="val">+233 20 749 2996</div></a>
+      <a class="contact-card" href="mailto:hello@ideo.com"><div class="ic">📧</div><div class="lab">Email</div><div class="val">hello@ideo.com</div></a>
+      <a class="contact-card" href="https://instagram.com/manuelphilms"><div class="ic">📷</div><div class="lab">Instagram</div><div class="val">@manuelphilms</div></a>
+      <a class="contact-card" href="https://youtube.com/@manuelphilms"><div class="ic">🎥</div><div class="lab">YouTube</div><div class="val">@manuelphilms</div></a>
+      <a class="contact-card" href="https://TikTok.com/manuelphilms"><div class="ic">🎬</div><div class="lab">TikTokdiv><div class="val">@manuelphilms</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <p class="eyebrow">Let's Make Something</p>
+    <h2 style="margin-top:1rem">The moment is happening. <em>Let's capture it.</em></h2>
+    <div style="margin-top:2.5rem"><a href="#book" class="btn btn-gold">Start a Project →</a></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">MANUEL<em>ohilms</em></div>
+        <p class="footer-tag">Cinematic visual storytelling — concerts, weddings, brand films and editorial work. Based in Accra, shooting worldwide.</p>
+        <div class="socials">
+          <a href="#">Instagram</a><a href="#">YouTube</a><a href="#">Vimeo</a><a href="#">TikTok</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#book">Book</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li>Accra, Ghana</li>
+          <li><a href="https://wa.me/233207492996">+233 20 749 2996</a></li>
+          <li><a href="mailto:hello@manuelphilms.com">hello@manuelphilms.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">© <span id="yr"></span> MANUELPHILMS· Cinematic Storytelling</div>
+  </div>
+</footer>
+
+<!-- GROUP EXPAND OVERLAY -->
+<div class="group-expand" id="groupExpand">
+  <div class="group-expand-head">
+    <div class="group-expand-title" id="groupExpandTitle">Music <em>Videos</em></div>
+    <button class="group-expand-close" id="groupExpandClose">Close ✕</button>
+  </div>
+  <div class="group-expand-grid" id="groupExpandGrid"></div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">Close ✕</button>
+  <div class="lightbox-inner" id="lightboxInner">
+    <video id="lightboxVideo" controls playsinline></video>
+    <div class="meta"><span class="t" id="lbTitle"></span><span class="c" id="lbCat"></span></div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // NAV scroll
+  const nav = document.getElementById('topNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Burger
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger.classList.remove('open'); mobileMenu.classList.remove('open');
+  }));
+
+  // VIDEOS
+  const B = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample";
+  const videos = [
+    { id:"v1",  title:"Sold Out / Live Set",   category:"music",   src:`${B}/BigBuckBunny.mp4` },
+    { id:"v2",  title:"Golden Hour / Vows",    category:"wedding", src:`${B}/ElephantsDream.mp4` },
+    { id:"v3",  title:"Brand Anthem",          category:"brand",   src:`${B}/ForBiggerBlazes.mp4` },
+    { id:"v4",  title:"Festival Aftermovie",   category:"event",   src:`${B}/ForBiggerEscapes.mp4` },
+    { id:"v5",  title:"Studio Session",        category:"music",   src:`${B}/ForBiggerFun.mp4` },
+    { id:"v6",  title:"First Look",            category:"wedding", src:`${B}/ForBiggerJoyrides.mp4` },
+    { id:"v7",  title:"Product Launch",        category:"brand",   src:`${B}/ForBiggerMeltdowns.mp4` },
+    { id:"v8",  title:"After Party",           category:"event",   src:`${B}/Sintel.mp4` },
+    { id:"v9",  title:"Documentary Short",     category:"brand",   src:`${B}/SubaruOutbackOnStreetAndDirt.mp4` },
+    { id:"v10", title:"Reception Reel",        category:"wedding", src:`${B}/TearsOfSteel.mp4` },
+    { id:"v11", title:"Tour Recap",            category:"music",   src:`${B}/VolkswagenGTIReview.mp4` },
+    { id:"v12", title:"Gala Highlights",       category:"event",   src:`${B}/WeAreGoingOnBullrun.mp4` },
+  ];
+
+  const grid = document.getElementById('galleryGrid');
+  let activeCat = 'all';
+
+  // Category display config
+  const catConfig = {
+    music:   { label:'Music',       em:'Videos',     icon:'🎬' },
+    wedding: { label:'Wedding',     em:'Films',      icon:'💍' },
+    brand:   { label:'Brand',       em:'Films',      icon:'🎙️' },
+    event:   { label:'Event',       em:'Coverage',   icon:'🎉' },
+  };
+
+  function makeVideoCard(v, extraClass='') {
+    return `
+      <button class="video-card ${extraClass}" data-id="${v.id}">
+        <video src="${v.src}" muted playsinline preload="metadata"
+          onmouseenter="this.play().catch(()=>{})"
+          onmouseleave="this.pause();this.currentTime=0;"></video>
+        <div class="grad"></div>
+        <div class="play"><div class="play-circle">▶</div></div>
+        <div class="card-meta"><div class="title">${v.title}</div><div class="cat">${v.category}</div></div>
+      </button>`;
+  }
+
+  function makeGroupCard(cat, catVideos) {
+    const cfg = catConfig[cat];
+    const cover = catVideos[0];
+    const count = catVideos.length;
+    return `
+      <button class="group-card" data-group="${cat}">
+        <video src="${cover.src}" muted playsinline preload="metadata"
+          onmouseenter="this.play().catch(()=>{})"
+          onmouseleave="this.pause();this.currentTime=0;"></video>
+        <div class="grad"></div>
+        <div class="play"><div class="play-circle">${cfg.icon}</div></div>
+        <div class="group-badge">${count} films</div>
+        <div class="card-meta">
+          <div class="title">${cfg.label} ${cfg.em}</div>
+          <div class="cat">${count} films · tap to explore</div>
+        </div>
+      </button>`;
+  }
+
+  function render() {
+    if (activeCat !== 'all') {
+      // Single category — show individual cards
+      const list = videos.filter(v => v.category === activeCat);
+      grid.innerHTML = list.map(v => makeVideoCard(v)).join('');
+      grid.querySelectorAll('.video-card').forEach(card => {
+        card.addEventListener('click', () => openLightbox(card.dataset.id));
+      });
+    } else {
+      // "All" — show one group card per category
+      const cats = Object.keys(catConfig);
+      grid.innerHTML = cats.map(cat => {
+        const catVideos = videos.filter(v => v.category === cat);
+        return catVideos.length ? makeGroupCard(cat, catVideos) : '';
+      }).join('');
+      grid.querySelectorAll('.group-card').forEach(card => {
+        card.addEventListener('click', () => openGroupExpand(card.dataset.group));
+      });
+    }
+  }
+  render();
+
+  document.querySelectorAll('#filters .filter').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('#filters .filter').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      activeCat = b.dataset.cat;
+      render();
+    });
+  });
+
+  // GROUP EXPAND
+  const ge = document.getElementById('groupExpand');
+  const geGrid = document.getElementById('groupExpandGrid');
+  const geTitle = document.getElementById('groupExpandTitle');
+
+  function openGroupExpand(cat) {
+    const cfg = catConfig[cat];
+    const catVideos = videos.filter(v => v.category === cat);
+    geTitle.innerHTML = `${cfg.label} <em>${cfg.em}</em>`;
+    geGrid.innerHTML = catVideos.map(v => makeVideoCard(v)).join('');
+    geGrid.querySelectorAll('.video-card').forEach(card => {
+      card.addEventListener('click', () => openLightbox(card.dataset.id));
+    });
+    ge.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeGroupExpand() {
+    ge.classList.remove('open');
+    document.body.style.overflow = '';
+    geGrid.querySelectorAll('video').forEach(v => { v.pause(); v.currentTime = 0; });
+  }
+  document.getElementById('groupExpandClose').addEventListener('click', closeGroupExpand);
+  window.addEventListener('keydown', e => { if (e.key === 'Escape') { closeGroupExpand(); closeLightbox(); } });
+
+  // LIGHTBOX
+  const lb = document.getElementById('lightbox');
+  const lbVideo = document.getElementById('lightboxVideo');
+  const lbTitle = document.getElementById('lbTitle');
+  const lbCat = document.getElementById('lbCat');
+  function openLightbox(id) {
+    const v = videos.find(x => x.id === id); if (!v) return;
+    lbVideo.src = v.src; lbTitle.textContent = v.title; lbCat.textContent = v.category;
+    lb.classList.add('open'); document.body.style.overflow = 'hidden';
+    lbVideo.play().catch(()=>{});
+  }
+  function closeLightbox() {
+    lb.classList.remove('open'); lbVideo.pause(); lbVideo.removeAttribute('src'); lbVideo.load();
+    document.body.style.overflow = '';
+  }
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+  document.getElementById('lightboxInner').addEventListener('click', e => e.stopPropagation());
+
+  // BOOK FORM → WhatsApp
+  document.getElementById('bookForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = e.target;
+    const text =
+      `*New Booking Inquiry*%0A%0A` +
+      `*Name:* ${f.first.value} ${f.last.value}%0A` +
+      `*Phone:* ${f.phone.value}%0A` +
+      `*Email:* ${f.email.value}%0A` +
+      `*Project:* ${f.type.value}%0A` +
+      `*Date:* ${f.date.value || 'Flexible'}%0A` +
+      `*Package:* ${f.pkg.value}%0A%0A` +
+      `*Details:*%0A${encodeURIComponent(f.message.value)}`;
+    window.open(`https://wa.me/233207492996?text=${text}`, '_blank');
+  });
+
+  // TAB SWITCHING - Hide/Show sections
+  const gallerySection = document.getElementById('gallery');
+  const aboutSection = document.getElementById('about');
+  const pricingSection = document.getElementById('pricing');
+  const contactSection = document.getElementById('contact');
+  const bookSection = document.getElementById('book');
+  const testimonialsSection = document.getElementById('testimonials');
+
+  // Sections that belong only to specific tabs (not homepage)
+  const tabSections = [gallerySection, aboutSection, pricingSection, contactSection, bookSection];
+
+  // Hide non-home sections on load; home (hero, stats, services, testimonials) visible
+  tabSections.forEach(s => { if (s) s.style.display = 'none'; });
+
+  // Track current tab
+  let currentTab = 'home';
+
+  const links = document.querySelectorAll('.nav-links a');
+
+  function switchTab(target) {
+    currentTab = target;
+
+    // Update active link
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + target));
+
+    // Show/hide sections
+    gallerySection.style.display = target === 'gallery' ? 'block' : 'none';
+    aboutSection.style.display = target === 'about' ? 'block' : 'none';
+    pricingSection.style.display = target === 'pricing' ? 'block' : 'none';
+    contactSection.style.display = target === 'contact' ? 'block' : 'none';
+    bookSection.style.display = target === 'book' ? 'block' : 'none';
+
+    // Testimonials only visible on homepage
+    if (testimonialsSection) {
+      testimonialsSection.style.display = target === 'home' ? '' : 'none';
+    }
+
+    // Show homepage sections (hero/stats/services) only on home tab
+    const homeSections = ['home', 'services'];
+    homeSections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = target === 'home' ? '' : 'none';
+    });
+    const statsSection = document.querySelector('section.stats');
+    if (statsSection) statsSection.style.display = target === 'home' ? '' : 'none';
+    const tickerWrap = document.getElementById('tickerWrap');
+    if (tickerWrap) tickerWrap.style.display = target === 'home' ? '' : 'none';
+  }
+
+  links.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const target = link.getAttribute('href').substring(1);
+      switchTab(target);
+    });
+  });
+
+  // Also handle mobile menu clicks
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      const target = a.getAttribute('href').substring(1);
+      switchTab(target);
+    });
+  });
+
+  // Handle hero CTAs and any in-page links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    if (!a.closest('.nav-links') && !a.closest('#mobileMenu')) {
+      a.addEventListener('click', () => {
+        const target = a.getAttribute('href').substring(1);
+        if (['home','gallery','about','pricing','contact','book'].includes(target)) {
+          switchTab(target);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    }
+  });
+
+  // Set Home as active on load
+  switchTab('home');
+</script>
+</body>
+</html>
