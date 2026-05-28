@@ -14,13 +14,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
 <style>
+  /* ─── THEME: Accra After Dark — obsidian, liquid gold, warm ivory ─── */
   :root{
-    --background:#1a0e08; --foreground:#f5e6da;
-    --surface:#271508; --surface-2:#321c0a;
-    --gold:#f0732e; --gold-light:#ff9a5c;
-    --cream:#fff3ea; --cream-2:#fde3ce;
-    --text:#f5e6da; --text-muted:#c9a080;
-    --border:rgba(240,115,46,0.28);
+    --background:#09090b;
+    --foreground:#f0ebe2;
+    --surface:#111113;
+    --surface-2:#18161a;
+    --gold:#c9922e;
+    --gold-light:#e8b455;
+    --gold-dim:#7a5418;
+    --cream:#f5efe3;
+    --cream-2:#e2d9c8;
+    --text:#ede6db;
+    --text-muted:#7a6e60;
+    --border:rgba(201,146,46,0.2);
+    --border-strong:rgba(201,146,46,0.48);
+    --accent-glow:rgba(201,146,46,0.10);
   }
   *{box-sizing:border-box;margin:0;padding:0;border-color:var(--border)}
   html{scroll-behavior:smooth}
@@ -44,11 +53,10 @@
   .btn-ghost:hover{background:var(--gold);color:var(--background)}
 
   /* NAV */
-  nav.top{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;transition:background .3s;background:linear-gradient(to bottom,rgba(26,14,8,.95),transparent)}
+  nav.top{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;transition:background .3s,backdrop-filter .3s;background:linear-gradient(to bottom,rgba(9,9,11,.95),transparent)}
   @media(min-width:768px){nav.top{padding:1.25rem 3rem}}
-  nav.top.scrolled{background:rgba(26,14,8,.95);box-shadow:0 1px 0 var(--border)}
+  nav.top.scrolled{background:rgba(9,9,11,.96);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--border)}
   .logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;letter-spacing:.12em;color:var(--gold)}
-  .logo em{color:var(--gold)}
   .nav-links{display:none;gap:2.25rem}
   @media(min-width:768px){.nav-links{display:flex}}
   .nav-links a{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);position:relative;padding-bottom:.25rem;transition:color .2s}
@@ -62,7 +70,7 @@
   .burger.open span:nth-child(1){transform:rotate(45deg) translate(4px,5px)}
   .burger.open span:nth-child(2){opacity:0}
   .burger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-5px)}
-  .mobile-menu{position:fixed;inset:0;z-index:40;background:rgba(26,14,8,.98);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;opacity:0;pointer-events:none;transition:opacity .3s}
+  .mobile-menu{position:fixed;inset:0;z-index:40;background:rgba(9,9,11,.98);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;opacity:0;pointer-events:none;transition:opacity .3s}
   .mobile-menu.open{opacity:1;pointer-events:auto}
   .mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--cream);letter-spacing:.08em}
   .mobile-menu a:hover{color:var(--gold)}
@@ -70,14 +78,19 @@
   /* HERO */
   .hero{position:relative;height:100vh;min-height:640px;display:flex;align-items:center;justify-content:center;overflow:hidden}
   .hero-bg{position:absolute;inset:0;animation:slowZoom 18s ease-in-out infinite alternate}
-  .hero-bg img{width:100%;height:100%;object-fit:cover}
-  .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,14,8,.82),rgba(26,14,8,.35),rgba(240,115,46,.2))}
-  .hero-content{position:relative;z-index:10;text-align:center;max-width:48rem;padding:0 1.5rem;animation:fadeUp .8s ease forwards}
-  .hero h1{font-size:clamp(3rem,8vw,6rem);color:var(--cream);letter-spacing:-.02em;margin-top:1.5rem}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+  /* Multi-layer overlay: cinema vignette + gold bleed */
+  .hero-overlay{position:absolute;inset:0;background:
+    linear-gradient(to top, rgba(9,9,11,1) 0%, rgba(9,9,11,.55) 35%, rgba(9,9,11,.1) 65%, rgba(9,9,11,.55) 100%),
+    linear-gradient(to right, rgba(9,9,11,.5) 0%, transparent 30%, transparent 70%, rgba(9,9,11,.5) 100%),
+    linear-gradient(to top, rgba(201,146,46,.14) 0%, transparent 30%)
+  }
+  .hero-content{position:relative;z-index:10;text-align:center;max-width:52rem;padding:0 1.5rem;animation:fadeUp .8s ease forwards}
+  .hero h1{font-size:clamp(3rem,8vw,6.5rem);color:var(--cream);letter-spacing:-.02em;margin-top:1.5rem}
   .hero p.sub{margin-top:1.5rem;color:var(--text-muted);font-size:1.05rem;max-width:34rem;margin-left:auto;margin-right:auto}
   .hero-ctas{margin-top:2.5rem;display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
   .scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:var(--text-muted);font-size:.65rem;letter-spacing:.4em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:.75rem}
-  .scroll-indicator::before{content:'';width:1px;height:3rem;background:rgba(240,115,46,.4)}
+  .scroll-indicator::before{content:'';width:1px;height:3rem;background:linear-gradient(to bottom,var(--gold),transparent)}
 
   /* SECTIONS */
   section{padding:6rem 0}
@@ -104,60 +117,133 @@
   .service::after{content:'';position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--gold);transition:width .5s}
   .service:hover::after{width:100%}
 
-  /* GALLERY */
+  /* ─────────────────────────────────────────────
+     GALLERY — Expanded with image + video support
+  ───────────────────────────────────────────── */
   .filters{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-bottom:2.5rem}
   .filter{padding:.5rem 1.25rem;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--border);background:transparent;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:inherit}
   .filter:hover{color:var(--gold);border-color:var(--gold)}
   .filter.active{background:var(--gold);color:var(--background);border-color:var(--gold)}
-  .gallery-grid{display:grid;gap:1.25rem;grid-template-columns:1fr}
-  @media(min-width:640px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
-  @media(min-width:1024px){.gallery-grid{grid-template-columns:repeat(3,1fr)}}
-  .video-card{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--surface);border:1px solid var(--border);cursor:pointer;transition:border-color .2s}
-  .video-card:hover{border-color:var(--gold)}
-  .video-card video{width:100%;height:100%;object-fit:cover;filter:brightness(.75);transition:all .7s}
-  .video-card:hover video{filter:brightness(1);transform:scale(1.05)}
-  .video-card .grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,14,8,.9),transparent 60%)}
-  .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:opacity .3s}
-  .video-card:hover .play{opacity:0}
-  .play-circle{width:4rem;height:4rem;border-radius:50%;border:1px solid var(--gold);background:rgba(26,14,8,.4);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.25rem;padding-left:4px}
-  .card-meta{position:absolute;left:0;right:0;bottom:0;padding:1rem;text-align:left}
-  .card-meta .title{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--cream)}
-  .card-meta .cat{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-top:.25rem}
 
-  /* GALLERY GROUP CARDS */
-  .group-card{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--surface);border:1px solid var(--border);cursor:pointer;transition:border-color .2s}
-  .group-card:hover{border-color:var(--gold)}
-  .group-card video{width:100%;height:100%;object-fit:cover;filter:brightness(.7);transition:all .7s}
-  .group-card:hover video{filter:brightness(1);transform:scale(1.05)}
-  .group-card .grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,14,8,.92),transparent 55%)}
-  .group-card .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:opacity .3s}
-  .group-card:hover .play{opacity:0}
-  .group-card .card-meta{position:absolute;left:0;right:0;bottom:0;padding:1rem;text-align:left}
-  .group-card .card-meta .title{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--cream)}
-  .group-card .card-meta .cat{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-top:.25rem}
-  .group-badge{position:absolute;top:.75rem;right:.75rem;background:var(--gold);color:var(--background);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;padding:.25rem .6rem;font-family:'DM Sans',sans-serif;font-weight:500}
+  /* Masonry-style mixed grid */
+  .gallery-grid{
+    columns:1;
+    column-gap:1rem;
+  }
+  @media(min-width:640px){.gallery-grid{columns:2;column-gap:1.25rem}}
+  @media(min-width:1024px){.gallery-grid{columns:3;column-gap:1.25rem}}
 
-  /* EXPANDED GROUP OVERLAY */
-  .group-expand{position:fixed;inset:0;z-index:150;background:rgba(26,14,8,.97);display:none;flex-direction:column;padding:1.5rem;overflow-y:auto}
+  /* Base media card */
+  .media-card{
+    break-inside:avoid;
+    position:relative;
+    overflow:hidden;
+    background:var(--surface);
+    border:1px solid var(--border);
+    cursor:pointer;
+    transition:border-color .25s,transform .25s,box-shadow .25s;
+    margin-bottom:1.25rem;
+    display:block;
+    width:100%;
+  }
+  .media-card:hover{
+    border-color:var(--gold-light);
+    transform:translateY(-3px);
+    box-shadow:0 12px 40px rgba(201,146,46,.15);
+  }
+
+  /* IMAGE cards — variable height for visual richness */
+  .media-card.is-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    filter:brightness(.88) saturate(.92);
+    transition:filter .6s,transform .6s;
+  }
+  .media-card.is-img:hover img{filter:brightness(1) saturate(1.05);transform:scale(1.04)}
+
+  /* VIDEO cards — fixed 16/9 */
+  .media-card.is-vid{aspect-ratio:16/9}
+  .media-card.is-vid video{width:100%;height:100%;object-fit:cover;filter:brightness(.8);transition:filter .6s,transform .6s}
+  .media-card.is-vid:hover video{filter:brightness(1);transform:scale(1.04)}
+
+  /* Shared overlays */
+  .mc-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(9,9,11,.92) 0%,rgba(9,9,11,.1) 55%,transparent 100%);pointer-events:none}
+  .mc-meta{position:absolute;left:0;right:0;bottom:0;padding:1rem 1.1rem;pointer-events:none}
+  .mc-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream);line-height:1.2}
+  .mc-cat{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-top:.3rem}
+
+  /* Play button for videos */
+  .mc-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:opacity .3s}
+  .media-card.is-vid:hover .mc-play{opacity:0}
+  .play-ring{width:3.5rem;height:3.5rem;border-radius:50%;border:1.5px solid rgba(201,146,46,.9);background:rgba(9,9,11,.45);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.1rem;padding-left:3px;transition:transform .25s,background .25s}
+  .media-card:hover .play-ring{transform:scale(1.12);background:rgba(201,146,46,.25)}
+
+  /* Type badge top-right */
+  .mc-badge{position:absolute;top:.7rem;right:.7rem;font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;padding:.2rem .55rem;border-radius:1px;font-family:'DM Sans',sans-serif;font-weight:500;backdrop-filter:blur(4px)}
+  .mc-badge.vid{background:var(--gold);color:var(--background)}
+  .mc-badge.img{background:rgba(9,9,11,.7);color:var(--gold);border:1px solid rgba(201,146,46,.5)}
+
+  /* Zoom icon on images */
+  .mc-zoom{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:3rem;height:3rem;border-radius:50%;border:1.5px solid rgba(201,146,46,.7);background:rgba(9,9,11,.4);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.1rem;opacity:0;transition:opacity .3s,transform .3s}
+  .media-card.is-img:hover .mc-zoom{opacity:1;transform:translate(-50%,-50%) scale(1.1)}
+
+  /* GROUP CARD (All tab overview) */
+  .group-card{
+    break-inside:avoid;
+    position:relative;
+    aspect-ratio:4/3;
+    overflow:hidden;
+    background:var(--surface);
+    border:1px solid var(--border);
+    cursor:pointer;
+    transition:border-color .25s,transform .25s,box-shadow .25s;
+    margin-bottom:1.25rem;
+    width:100%;
+    display:block;
+  }
+  .group-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 12px 40px rgba(201,146,46,.15)}
+  .group-card video,.group-card img{width:100%;height:100%;object-fit:cover;filter:brightness(.7);transition:filter .6s,transform .6s}
+  .group-card:hover video,.group-card:hover img{filter:brightness(1);transform:scale(1.04)}
+  .group-card .mc-grad{background:linear-gradient(to top,rgba(9,9,11,.95) 0%,rgba(9,9,11,.3) 60%,transparent)}
+  .group-card .mc-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:opacity .3s}
+  .group-card:hover .mc-play{opacity:0}
+  .group-badge{position:absolute;top:.7rem;right:.7rem;background:var(--gold);color:var(--background);font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;padding:.2rem .6rem;font-family:'DM Sans',sans-serif;font-weight:500}
+  .group-count-icon{position:absolute;top:.7rem;left:.7rem;display:flex;gap:.25rem}
+  .count-pip{width:.45rem;height:.45rem;border-radius:50%;background:rgba(201,146,46,.7)}
+
+  /* ── LIGHTBOX (video + image) ── */
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(5,5,7,.98);display:none;align-items:center;justify-content:center;padding:1rem}
+  @media(min-width:768px){.lightbox{padding:3rem}}
+  .lightbox.open{display:flex}
+  .lightbox-close{position:absolute;top:1.25rem;right:1.25rem;color:var(--gold);border:1px solid var(--gold);padding:.45rem 1rem;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;background:transparent;cursor:pointer;font-family:inherit;transition:all .2s;z-index:10}
+  .lightbox-close:hover{background:var(--gold);color:var(--background)}
+  .lightbox-inner{width:100%;max-width:68rem}
+  .lightbox video,.lightbox-img-wrap img{width:100%;border-radius:2px;box-shadow:0 30px 80px rgba(0,0,0,.7)}
+  .lightbox video{aspect-ratio:16/9;background:#000}
+  .lightbox-img-wrap img{max-height:80vh;object-fit:contain;width:auto;margin:0 auto;display:block}
+  .lightbox .lb-meta{margin-top:1rem;display:flex;justify-content:space-between;align-items:center}
+  .lightbox .lb-meta .t{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--cream)}
+  .lightbox .lb-meta .c{color:var(--gold);font-size:.65rem;letter-spacing:.25em;text-transform:uppercase}
+  /* Prev/Next nav in lightbox */
+  .lb-nav{position:absolute;top:50%;display:flex;gap:.5rem;transform:translateY(-50%)}
+  .lb-nav.prev{left:1rem}.lb-nav.next{right:1rem}
+  .lb-arrow{width:2.5rem;height:2.5rem;border:1px solid var(--border-strong);background:rgba(9,9,11,.6);color:var(--gold);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all .2s;backdrop-filter:blur(4px)}
+  .lb-arrow:hover{background:var(--gold);color:var(--background);border-color:var(--gold)}
+  @media(max-width:640px){.lb-nav{display:none}}
+
+  /* ── GROUP EXPAND OVERLAY ── */
+  .group-expand{position:fixed;inset:0;z-index:150;background:rgba(9,9,11,.97);display:none;flex-direction:column;padding:1.5rem;overflow-y:auto}
   .group-expand.open{display:flex}
   .group-expand-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-shrink:0}
   .group-expand-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,4vw,2.25rem);color:var(--cream)}
   .group-expand-title em{color:var(--gold)}
   .group-expand-close{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:.5rem 1rem;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;font-family:inherit;transition:all .2s;flex-shrink:0}
   .group-expand-close:hover{background:var(--gold);color:var(--background)}
-  .group-expand-grid{display:grid;gap:1.25rem;grid-template-columns:1fr}
-  @media(min-width:640px){.group-expand-grid{grid-template-columns:repeat(2,1fr)}}
-  @media(min-width:1024px){.group-expand-grid{grid-template-columns:repeat(3,1fr)}}
-  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(26,14,8,.97);display:none;align-items:center;justify-content:center;padding:1rem}
-  @media(min-width:768px){.lightbox{padding:3rem}}
-  .lightbox.open{display:flex}
-  .lightbox-close{position:absolute;top:1.5rem;right:1.5rem;color:var(--gold);border:1px solid var(--gold);padding:.5rem 1rem;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;background:transparent;cursor:pointer;font-family:inherit;transition:all .2s}
-  .lightbox-close:hover{background:var(--gold);color:var(--background)}
-  .lightbox-inner{width:100%;max-width:64rem}
-  .lightbox video{width:100%;aspect-ratio:16/9;background:#000;border-radius:2px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
-  .lightbox .meta{margin-top:1rem;display:flex;justify-content:space-between;align-items:center;font-size:.875rem}
-  .lightbox .meta .t{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--cream)}
-  .lightbox .meta .c{color:var(--gold);font-size:.65rem;letter-spacing:.25em;text-transform:uppercase}
+  .group-expand-grid{columns:1;column-gap:1.25rem}
+  @media(min-width:640px){.group-expand-grid{columns:2}}
+  @media(min-width:1024px){.group-expand-grid{columns:3}}
 
   /* ABOUT */
   .about{display:grid;gap:3rem;align-items:center}
@@ -166,15 +252,13 @@
   @media(min-width:1024px){.about-img-wrap{justify-content:flex-start}}
   .about-img{position:relative;width:min(280px,100%)}
   @media(min-width:1024px){.about-img{width:min(300px,100%)}}
-  .about-img::before{content:'';position:absolute;inset:-0.75rem;border:1px solid rgba(240,115,46,.3);z-index:-1;border-radius:2px}
-  .about-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 55%,rgba(26,14,8,.45));pointer-events:none;border-radius:2px}
+  .about-img::before{content:'';position:absolute;inset:-0.75rem;border:1px solid rgba(201,146,46,.3);z-index:-1;border-radius:2px}
+  .about-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 55%,rgba(9,9,11,.45));pointer-events:none;border-radius:2px}
   .about-img img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:2px;display:block}
   .about-badge{position:absolute;bottom:-0.875rem;right:-0.875rem;background:var(--gold);color:var(--background);padding:.55rem 1.1rem;font-family:'Cormorant Garamond',serif;font-size:.95rem;letter-spacing:.1em;z-index:2}
-  /* Film-strip accent */
   .about-film{position:absolute;top:1.1rem;left:-1.1rem;display:flex;flex-direction:column;gap:3px;z-index:2}
-  .about-film span{display:block;width:12px;height:8px;border:1px solid rgba(240,115,46,.5);background:rgba(26,14,8,.65);border-radius:1px}
-  /* Awards chip */
-  .about-award{position:absolute;top:.9rem;right:.9rem;z-index:3;background:rgba(26,14,8,.8);border:1px solid rgba(240,115,46,.45);padding:.35rem .65rem;backdrop-filter:blur(6px);text-align:center}
+  .about-film span{display:block;width:12px;height:8px;border:1px solid rgba(201,146,46,.5);background:rgba(9,9,11,.65);border-radius:1px}
+  .about-award{position:absolute;top:.9rem;right:.9rem;z-index:3;background:rgba(9,9,11,.8);border:1px solid rgba(201,146,46,.45);padding:.35rem .65rem;backdrop-filter:blur(6px);text-align:center}
   .about-award .aw-num{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--gold);line-height:1}
   .about-award .aw-lab{font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);margin-top:.1rem}
   .about h2{font-size:clamp(2rem,5vw,3rem);color:var(--cream);margin-top:1rem;line-height:1.15}
@@ -199,22 +283,23 @@
   figure.quote .name{color:var(--gold);letter-spacing:.05em}
   figure.quote .role{color:var(--text-muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.2em;margin-top:.25rem}
 
-  /* PRICING */
-  .pricing-grid{display:grid;gap:1.5rem;grid-template-columns:1fr}
-  @media(min-width:768px){.pricing-grid{grid-template-columns:repeat(3,1fr)}}
-  .tier{position:relative;padding:2rem;border:1px solid var(--border);background:var(--surface);transition:all .3s}
-  .tier:hover{border-color:rgba(240,115,46,.5)}
-  .tier.featured{border-color:var(--gold);background:var(--surface-2);box-shadow:0 30px 80px rgba(240,115,46,.18)}
-  @media(min-width:768px){.tier.featured{transform:translateY(-1rem)}}
-  .tier .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--background);padding:.25rem 1rem;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase}
-  .tier .name{font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-muted)}
-  .tier .price{margin-top:1rem;font-family:'Cormorant Garamond',serif;font-size:2.25rem;color:var(--cream)}
-  .tier .price small{font-family:'DM Sans',sans-serif;font-size:.875rem;color:var(--text-muted);margin-left:.25rem}
-  .tier hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0}
-  .tier ul li{display:flex;gap:.75rem;font-size:.875rem;color:var(--text-muted)}
-  .tier ul li+li{margin-top:.75rem}
-  .tier ul li::before{content:'✦';color:var(--gold)}
-  .tier .btn{margin-top:2rem;width:100%;justify-content:center;display:flex}
+  /* PRICING — packages style (matches terms page) */
+  .packages{display:grid;gap:1.5rem;margin-top:2rem;grid-template-columns:1fr}
+  @media(min-width:720px){.packages{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1100px){.packages{grid-template-columns:repeat(3,1fr)}}
+  .pkg{border:1px solid var(--border);background:var(--surface);padding:2rem;border-radius:4px;position:relative;transition:all .3s;display:flex;flex-direction:column}
+  .pkg:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 20px 50px -20px var(--accent-glow)}
+  .pkg.featured{border-color:var(--gold);background:var(--surface-2);box-shadow:0 30px 80px rgba(201,146,46,.15)}
+  .pkg .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--background);padding:.25rem 1rem;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase}
+  .pkg .tier{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text-muted)}
+  .pkg h3{font-size:1.8rem;color:var(--gold);margin:.3rem 0 .2rem;font-weight:300}
+  .pkg .price{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;color:var(--cream);margin-bottom:1rem}
+  .pkg .meta{font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-light);margin-bottom:1.2rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+  .pkg .label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:1rem;margin-bottom:.5rem}
+  .pkg ul{margin:0 0 0 1rem;font-size:.92rem;color:var(--text-muted);list-style:none}
+  .pkg ul li{margin-bottom:.4rem;padding-left:.4rem;list-style:none;position:relative}
+  .pkg ul li::before{content:"—";position:absolute;left:-.9rem;color:var(--gold)}
+  .pkg .btn{margin-top:auto;margin-top:2rem;width:100%;justify-content:center;display:flex}
 
   /* CONTACT / BOOK */
   .book-grid{display:grid;gap:3rem}
@@ -269,12 +354,10 @@
   @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
   /* GRAIN */
-  .grain{position:fixed;inset:0;z-index:999;pointer-events:none;opacity:.028;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px;animation:grainShift 0.5s steps(1) infinite}
+  .grain{position:fixed;inset:0;z-index:999;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px;animation:grainShift 0.5s steps(1) infinite}
   @keyframes grainShift{0%{background-position:0 0}20%{background-position:-30px 10px}40%{background-position:20px -20px}60%{background-position:-10px 30px}80%{background-position:25px -10px}100%{background-position:0 0}}
 
-  /* anchor offset */
   section[id]{scroll-margin-top:80px}
-
   @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
   @keyframes slowZoom{from{transform:scale(1)}to{transform:scale(1.08)}}
 </style>
@@ -306,7 +389,14 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-bg"><img src="hero.jpg" alt="Videographer at a concert" /></div>
+  <!-- ============================================================
+       HERO BACKGROUND IMAGE
+       Replace the src below with your actual image URL or file path
+       Example: src="IMG_1210.jpg"  or  src="https://your-cdn.com/hero.jpg"
+  ============================================================ -->
+  <div class="hero-bg">
+    <img src="https://res.cloudinary.com/dsrigtvy4/image/upload/v1779928018/IMG_1210.JPG_yypndv.jpg" alt="Behind the scenes on a Ghana street shoot" />
+  </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="eyebrow">Concerts · Weddings · Brand Films</p>
@@ -343,7 +433,6 @@
     <span class="ticker-item">Documentaries <span class="dot">✦</span></span>
     <span class="ticker-item">Accra · Ghana <span class="dot">✦</span></span>
     <span class="ticker-item">Available Worldwide <span class="dot">✦</span></span>
-    <!-- duplicate for seamless loop -->
     <span class="ticker-item">Concerts <span class="dot">✦</span></span>
     <span class="ticker-item">Wedding Films <span class="dot">✦</span></span>
     <span class="ticker-item">Brand Stories <span class="dot">✦</span></span>
@@ -372,13 +461,15 @@
   </div>
 </section>
 
-<!-- GALLERY -->
+<!-- ============================================================
+     GALLERY SECTION
+     ============================================================ -->
 <section id="gallery" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
   <div class="container">
     <div class="section-head">
       <p class="eyebrow">The Reel</p>
       <h2>The <em>Gallery</em></h2>
-      <p>A selection of recent films. Tap any frame to watch.</p>
+      <p>Videos & stills from recent projects. Tap any frame to experience the full piece.</p>
     </div>
     <div class="filters" id="filters">
       <button class="filter active" data-cat="all">All</button>
@@ -436,17 +527,17 @@
     </div>
     <div class="grid-3">
       <figure class="quote">
-        <span class="mark">“</span>
+        <span class="mark">"</span>
         <blockquote>Our wedding film genuinely felt like a movie. I cried, my mother cried, our friends cried.</blockquote>
         <figcaption><div class="name">Ama & Kojo</div><div class="role">Wedding clients</div></figcaption>
       </figure>
       <figure class="quote">
-        <span class="mark">“</span>
+        <span class="mark">"</span>
         <blockquote>The brand film exceeded everything we briefed. Sales doubled the week we launched it.</blockquote>
         <figcaption><div class="name">Selasi Mensah</div><div class="role">Founder, Kente Collective</div></figcaption>
       </figure>
       <figure class="quote">
-        <span class="mark">“</span>
+        <span class="mark">"</span>
         <blockquote>Best concert recap I've ever had. Captured the energy perfectly.</blockquote>
         <figcaption><div class="name">Sarkodie</div><div class="role">Recording artist</div></figcaption>
       </figure>
@@ -462,50 +553,73 @@
       <h2>Simple, Transparent <em>Pricing</em></h2>
       <p>Every project is unique — these are starting points. Larger productions, multi-day shoots and ad campaigns are quoted on request.</p>
     </div>
-    <div class="pricing-grid">
-      <div class="tier">
-        <div class="name">Essential</div>
-        <div class="price">GH₵ 3,500<small>/ project</small></div>
-        <hr/>
+    <div class="packages">
+
+      <div class="pkg">
+        <div class="tier">Visualizers</div>
+        <h3>Visualizers</h3>
+        <div class="price">GHS 10,000</div>
+        <div class="meta">Full Day · Production · Post</div>
+        <div class="label">We provide</div>
         <ul>
-          <li>Up to 4 hours of coverage</li>
-          <li>Single-camera setup</li>
-          <li>60-second highlight reel</li>
-          <li>Royalty-free music</li>
-          <li>Online HD delivery in 14 days</li>
+          <li>Sony FX3 / Blackmagic 4K</li>
+          <li>Canon Cinema Lenses</li>
+          <li>Location, lights &amp; equipment</li>
+          <li>Crew &amp; makeup</li>
+          <li>Editing &amp; colour grading</li>
         </ul>
-        <a href="#book" class="btn btn-ghost">Book Essential</a>
+        <div class="label">You provide</div>
+        <ul>
+          <li>Artist costumes</li>
+          <li>Models, dancers &amp; their costumes</li>
+          <li>Food &amp; drinks</li>
+          <li>Car (if needed)</li>
+        </ul>
+        <a href="#book" class="btn btn-ghost">Book Visualizers</a>
       </div>
-      <div class="tier featured">
+
+      <div class="pkg featured">
         <div class="badge">Most Popular</div>
-        <div class="name">Signature</div>
-        <div class="price">GH₵ 7,500<small>/ project</small></div>
-        <hr/>
+        <div class="tier">Silver</div>
+        <h3>Silver</h3>
+        <div class="price">GHS 25,000</div>
+        <div class="meta">Full Day · Production · Post</div>
+        <div class="label">We provide</div>
         <ul>
-          <li>Up to 8 hours of coverage</li>
-          <li>Two-camera multi-angle setup</li>
-          <li>3-minute cinematic film</li>
-          <li>Full color grade & sound mix</li>
-          <li>Drone aerial footage included</li>
-          <li>4K delivery in 21 days</li>
+          <li>Red Gemini 6K + Cinema Lenses</li>
+          <li>Location, lights, equipment &amp; props</li>
+          <li>Crew, makeup &amp; styling</li>
+          <li>Up to 5 models / dancers + costumes</li>
+          <li>Editing, colour grading &amp; car if needed</li>
         </ul>
-        <a href="#book" class="btn btn-gold">Book Signature</a>
-      </div>
-      <div class="tier">
-        <div class="name">Premium</div>
-        <div class="price">GH₵ 15,000<small>/ project</small></div>
-        <hr/>
+        <div class="label">You provide</div>
         <ul>
-          <li>Full-day coverage (12 hrs)</li>
-          <li>Three-camera crew + audio op</li>
-          <li>8–12 minute feature film</li>
-          <li>Drone + gimbal + sliders</li>
-          <li>Pre-production planning</li>
-          <li>Same-day social teaser</li>
-          <li>Raw footage archive</li>
+          <li>Artist costumes</li>
+          <li>Food &amp; drinks</li>
         </ul>
-        <a href="#book" class="btn btn-ghost">Book Premium</a>
+        <a href="#book" class="btn btn-gold">Book Silver</a>
       </div>
+
+      <div class="pkg">
+        <div class="tier">Gold</div>
+        <h3>Gold</h3>
+        <div class="price">GHS 40,000</div>
+        <div class="meta">Full Day · Production · Post</div>
+        <div class="label">We provide</div>
+        <ul>
+          <li>Red VV Raptor 8K Camera</li>
+          <li>Sigma Cinema Lenses &amp; props</li>
+          <li>Artist, vixen &amp; dancer styling</li>
+          <li>10 models + artist costume</li>
+          <li>Full crew, lighting &amp; post</li>
+        </ul>
+        <div class="label">You provide</div>
+        <ul>
+          <li>Nothing — fully turn-key</li>
+        </ul>
+        <a href="#book" class="btn btn-ghost">Book Gold</a>
+      </div>
+
     </div>
   </div>
 </section>
@@ -521,7 +635,7 @@
         <div class="book-info">
           <div class="book-info-row"><div class="ic">📍</div><div><div class="lab">Location</div><div class="val">Accra, Ghana (nationwide & international)</div></div></div>
           <div class="book-info-row"><div class="ic">📞</div><div><div class="lab">WhatsApp</div><div class="val">+233 54 760 2000</div></div></div>
-          <div class="book-info-row"><div class="ic">📧</div><div><div class="lab">Email</div><div class="val">osmanbahq18@gmail.com</div></div></div>
+          <div class="book-info-row"><div class="ic">📧</div><div><div class="lab">Email</div><div class="val">manuelphilms@gmail.com</div></div></div>
           <div class="book-info-row"><div class="ic">🕐</div><div><div class="lab">Response</div><div class="val">Within 2 hours on WhatsApp</div></div></div>
         </div>
       </div>
@@ -560,10 +674,10 @@
     <div class="contact-grid">
       <div class="contact-card"><div class="ic">📍</div><div class="lab">Studio</div><div class="val">East Legon, Accra, Ghana</div></div>
       <a class="contact-card" href="https://wa.me/233547602000"><div class="ic">📞</div><div class="lab">WhatsApp</div><div class="val">+233 54 760 2000</div></a>
-      <a class="contact-card" href="mailto:osmanbahq18@gmail.com"><div class="ic">📧</div><div class="lab">Email</div><div class="val">osmanbahq18@gmail.com</div></a>
+      <a class="contact-card" href="mailto:manuelphilms@gmail.com"><div class="ic">📧</div><div class="lab">Email</div><div class="val">manuelphilms@gmail.com</div></a>
       <a class="contact-card" href="https://instagram.com/manuelphilms_"><div class="ic">📷</div><div class="lab">Instagram</div><div class="val">@manuelphilms</div></a>
       <a class="contact-card" href="https://youtube.com/@manuelphilms"><div class="ic">🎥</div><div class="lab">YouTube</div><div class="val">@manuelphilms</div></a>
-      <a class="contact-card" href="https://TikTok.com/manuelphilms"><div class="ic">🎬</div><div class="lab">TikTokdiv><div class="val">@manuelphilms</div></a>
+      <a class="contact-card" href="https://tiktok.com/@manuelphilms"><div class="ic">🎬</div><div class="lab">TikTok</div><div class="val">@manuelphilms</div></a>
     </div>
   </div>
 </section>
@@ -585,7 +699,10 @@
         <div class="footer-logo">MANUEL<em>philms</em></div>
         <p class="footer-tag">Cinematic visual storytelling — concerts, weddings, brand films and editorial work. Based in Accra, shooting worldwide.</p>
         <div class="socials">
-          <a href="https://instagram.com/manuelphilms_">Instagram</a><a href="https://youtube.com/@manuelphilms">YouTube</a><a href="#">X</a><a href="https://tiktok.com/@manuelphilms">TikTok</a>
+          <a href="https://instagram.com/manuelphilms_">Instagram</a>
+          <a href="https://youtube.com/@manuelphilms">YouTube</a>
+          <a href="#">X</a>
+          <a href="https://tiktok.com/@manuelphilms">TikTok</a>
         </div>
       </div>
       <div class="footer-col">
@@ -604,11 +721,11 @@
         <ul>
           <li>Accra, Ghana</li>
           <li><a href="https://wa.me/233547602000">+233 54 760 2000</a></li>
-          <li><a href="mailto:hello@manuelphilms.com">hello@manuelphilms.com</a></li>
+          <li><a href="mailto:manuelphilms@gmail.com">manuelphilms@gmail.com</a></li>
         </ul>
       </div>
     </div>
-    <div class="copyright">© <span id="yr"></span> MANUELPHILMS· Cinematic Storytelling</div>
+    <div class="copyright">© <span id="yr"></span> MANUELPHILMS · Cinematic Storytelling &nbsp;·&nbsp; <a href="terms.html" style="color:var(--gold);letter-spacing:.15em">Terms &amp; Conditions</a></div>
   </div>
 </footer>
 
@@ -621,12 +738,22 @@
   <div class="group-expand-grid" id="groupExpandGrid"></div>
 </div>
 
-<!-- LIGHTBOX -->
+<!-- LIGHTBOX (video + image) -->
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lightboxClose">Close ✕</button>
+  <button class="lb-arrow lb-nav prev" id="lbPrev">‹</button>
+  <button class="lb-arrow lb-nav next" id="lbNext">›</button>
   <div class="lightbox-inner" id="lightboxInner">
-    <video id="lightboxVideo" controls playsinline></video>
-    <div class="meta"><span class="t" id="lbTitle"></span><span class="c" id="lbCat"></span></div>
+    <!-- video player -->
+    <video id="lightboxVideo" controls playsinline style="display:none"></video>
+    <!-- image viewer -->
+    <div class="lightbox-img-wrap" id="lightboxImgWrap" style="display:none">
+      <img id="lightboxImg" src="" alt="" />
+    </div>
+    <div class="lb-meta">
+      <span class="t" id="lbTitle"></span>
+      <span class="c" id="lbCat"></span>
+    </div>
   </div>
 </div>
 
@@ -650,85 +777,156 @@
     burger.classList.remove('open'); mobileMenu.classList.remove('open');
   }));
 
-  // VIDEOS
+  // ══════════════════════════════════════════════════════════════
+  //  GALLERY DATA
+  //  ─ type: 'video' or 'image'
+  //  ─ src:  paste your video URL or image URL/path here
+  //  ─ thumb (optional): poster image for video cards
+  //  ─ aspect (for images): 'landscape' | 'portrait' | 'square'
+  //    controls the card height — pick what fits your photo
+  // ══════════════════════════════════════════════════════════════
   const B = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample";
-  const videos = [
-    { id:"v1",  title:"Sold Out / Live Set",   category:"music",   src:`${B}/BigBuckBunny.mp4` },
-    { id:"v2",  title:"Golden Hour / Vows",    category:"wedding", src:`${B}/ElephantsDream.mp4` },
-    { id:"v3",  title:"Brand Anthem",          category:"brand",   src:`${B}/ForBiggerBlazes.mp4` },
-    { id:"v4",  title:"Festival Aftermovie",   category:"event",   src:`${B}/ForBiggerEscapes.mp4` },
-    { id:"v5",  title:"Studio Session",        category:"music",   src:`${B}/ForBiggerFun.mp4` },
-    { id:"v6",  title:"First Look",            category:"wedding", src:`${B}/ForBiggerJoyrides.mp4` },
-    { id:"v7",  title:"Product Launch",        category:"brand",   src:`${B}/ForBiggerMeltdowns.mp4` },
-    { id:"v8",  title:"After Party",           category:"event",   src:`${B}/Sintel.mp4` },
-    { id:"v9",  title:"Documentary Short",     category:"brand",   src:`${B}/SubaruOutbackOnStreetAndDirt.mp4` },
-    { id:"v10", title:"Reception Reel",        category:"wedding", src:`${B}/TearsOfSteel.mp4` },
-    { id:"v11", title:"Tour Recap",            category:"music",   src:`${B}/VolkswagenGTIReview.mp4` },
-    { id:"v12", title:"Gala Highlights",       category:"event",   src:`${B}/WeAreGoingOnBullrun.mp4` },
+
+  const mediaItems = [
+  
+
+    // ── MUSIC  (cover = first image below) ────────────────────────
+    { id:"i_m1", type:"image",  title:"On Set — Street Shoot",          category:"music",   src:"https://res.cloudinary.com/dsrigtvy4/image/upload/v1779754550/IMG_0667.JPG_lhjvbz.jpg",  aspect:"landscape" },
+    { id:"i_m2", type:"image",  title:"Lights & Crowd",        category:"music",   src:"https://res.cloudinary.com/dsrigtvy4/image/upload/v1779845559/IMG_5821.JPG_nzuesl.jpg",  aspect:"landscape" },
+    { id:"i_m3", type:"image",  title:"Light Energy", category:"music",   src:"https://res.cloudinary.com/dsrigtvy4/image/upload/v1779849700/IMG_1213.JPG_vblya6.jpg", aspect:"landscape" },
+    { id:"v1",   type:"video",  title:"Live Set",   category:"music",   src:"https://res.cloudinary.com/dsrigtvy4/video/upload/v1779843095/IMG_1943_kexdjc.mp4",         thumb:"" },
+    { id:"v5",   type:"video",  title:"Studio Session",        category:"music",   src:"https://res.cloudinary.com/dsrigtvy4/video/upload/v1779843858/IMG_2564_pxixjn.mp4",         thumb:"" },
+    { id:"v11",  type:"video",  title:"On Set",            category:"music",   src:"https://res.cloudinary.com/dsrigtvy4/video/upload/v1779843883/IMG_0513_dabjaw.mp4",  thumb:"" },
+
+    // ── WEDDINGS  (cover = first image below) ─────────────────────
+    { id:"i_w1", type:"image",  title:"Golden Ceremony",       category:"wedding", src:"https://res.cloudinary.com/dsrigtvy4/image/upload/v1779840994/IMG_7014.JPG_kjtggs.jpg", aspect:"portrait"  },
+    { id:"i_w2", type:"image",  title:"The Rings",             category:"wedding", src:"https://res.cloudinary.com/dsrigtvy4/image/upload/v1779846049/IMG_7021.JPG_btskq9.jpg", aspect:"landscape" },
+    { id:"i_w3", type:"image",  title:"First Look",            category:"wedding", src:"https://res.cloudinary.com/dsrigtvy4/image/upload/v1779849346/IMG_7024.JPG_mzbune.jpg", aspect:"landscape" },
+    { id:"v2",   type:"video",  title:"Golden Hour / Vows",    category:"wedding", src:`${B}/ElephantsDream.mp4`,       thumb:"" },
+
+    // ── BRAND FILMS  (cover = first image below) ──────────────────
+    { id:"i_b1", type:"image",  title:"Behind The Camera",        category:"brand",   src:"https://res.cloudinary.com/dsrigtvy4/image/upload/v1779844986/IMG_7540.JPG_1_jpqm2m.jpg",  aspect:"landscape" },
+    { id:"i_b2", type:"image",  title:"Focus",     category:"brand",   src:"https://res.cloudinary.com/dsrigtvy4/image/upload/v1779844943/IMG_2262.JPG_1_tchfoi.jpg",  aspect:"landscape" },
+    { id:"v3",   type:"video",  title:"Brand Anthem",          category:"brand",   src:"https://res.cloudinary.com/dsrigtvy4/video/upload/v1779846705/IMG_4696_gfon9o.mov",      thumb:"" },
+    { id:"v7",   type:"video",  title:"Product Launch",        category:"brand",   src:"https://res.cloudinary.com/dsrigtvy4/video/upload/v1779846850/IMG_0176_2_cq0eux.mp4",   thumb:"" },
+    { id:"v9",   type:"video",  title:"Documentary Short",     category:"brand",   src:"https://res.cloudinary.com/dsrigtvy4/video/upload/v1779846725/IMG_4693_dgohuj.mp4", thumb:"" },
+
+    // ── EVENTS  (cover = first image below) ───────────────────────
+    { id:"i_e1", type:"image",  title:"Festival Vibes",        category:"event",   src:"https://res.cloudinary.com/dsrigtvy4/image/upload/v1779844948/IMG_4502.JPG_1_mz0ovc.jpg",  aspect:"landscape" },
+    { id:"i_e2", type:"image",  title:"Lights",          category:"event",   src:"https://res.cloudinary.com/dsrigtvy4/image/upload/v1779846045/IMG_4526.JPG_pqcfv9.jpg",  aspect:"landscape" },
+    { id:"v4",   type:"video",  title:"Festival Aftermovie",   category:"event",   src:"https://res.cloudinary.com/dsrigtvy4/video/upload/v1779844941/IMG_7619_1_g5gpcg.mov",     thumb:"" },
   ];
 
-  const grid = document.getElementById('galleryGrid');
-  let activeCat = 'all';
+  // Aspect → CSS aspect-ratio value for image cards
+  const aspectMap = { landscape:"16/9", portrait:"3/4", square:"1/1" };
 
-  // Category display config
-  const catConfig = {
-    music:   { label:'Music',       em:'Videos',     icon:'🎬' },
-    wedding: { label:'Wedding',     em:'Films',      icon:'💍' },
-    brand:   { label:'Brand',       em:'Films',      icon:'🎙️' },
-    event:   { label:'Event',       em:'Coverage',   icon:'🎉' },
-  };
-
-  function makeVideoCard(v, extraClass='') {
+  // ── Build a video card ─────────────────────────────────────
+  function makeVideoCard(item, extraClass='') {
+    const thumbAttr = item.thumb ? `poster="${item.thumb}"` : '';
     return `
-      <button class="video-card ${extraClass}" data-id="${v.id}">
-        <video src="${v.src}" muted playsinline preload="metadata"
+      <button class="media-card is-vid ${extraClass}" data-id="${item.id}" style="aspect-ratio:16/9">
+        <video src="${item.src}" muted playsinline preload="metadata" ${thumbAttr}
           onmouseenter="this.play().catch(()=>{})"
           onmouseleave="this.pause();this.currentTime=0;"></video>
-        <div class="grad"></div>
-        <div class="play"><div class="play-circle">▶</div></div>
-        <div class="card-meta"><div class="title">${v.title}</div><div class="cat">${v.category}</div></div>
-      </button>`;
-  }
-
-  function makeGroupCard(cat, catVideos) {
-    const cfg = catConfig[cat];
-    const cover = catVideos[0];
-    const count = catVideos.length;
-    return `
-      <button class="group-card" data-group="${cat}">
-        <video src="${cover.src}" muted playsinline preload="metadata"
-          onmouseenter="this.play().catch(()=>{})"
-          onmouseleave="this.pause();this.currentTime=0;"></video>
-        <div class="grad"></div>
-        <div class="play"><div class="play-circle">${cfg.icon}</div></div>
-        <div class="group-badge">${count} films</div>
-        <div class="card-meta">
-          <div class="title">${cfg.label} ${cfg.em}</div>
-          <div class="cat">${count} films · tap to explore</div>
+        <div class="mc-grad"></div>
+        <div class="mc-play"><div class="play-ring">▶</div></div>
+        <span class="mc-badge vid">Video</span>
+        <div class="mc-meta">
+          <div class="mc-title">${item.title}</div>
+          <div class="mc-cat">${item.category}</div>
         </div>
       </button>`;
   }
 
+  // ── Build an image card ────────────────────────────────────
+  function makeImageCard(item, extraClass='') {
+    const ratio = aspectMap[item.aspect] || '4/3';
+    return `
+      <button class="media-card is-img ${extraClass}" data-id="${item.id}" style="aspect-ratio:${ratio}">
+        <img src="${item.src}" alt="${item.title}" loading="lazy" />
+        <div class="mc-grad"></div>
+        <div class="mc-zoom">⊕</div>
+        <span class="mc-badge img">Photo</span>
+        <div class="mc-meta">
+          <div class="mc-title">${item.title}</div>
+          <div class="mc-cat">${item.category}</div>
+        </div>
+      </button>`;
+  }
+
+  function makeCard(item, extraClass='') {
+    return item.type === 'video'
+      ? makeVideoCard(item, extraClass)
+      : makeImageCard(item, extraClass);
+  }
+
+  // ── Category config ────────────────────────────────────────
+  const catConfig = {
+    music:   { label:'Music',   em:'Videos',   icon:'🎬' },
+    wedding: { label:'Wedding', em:'Films',     icon:'💍' },
+    brand:   { label:'Brand',   em:'Films',     icon:'🎙️' },
+    event:   { label:'Event',   em:'Coverage',  icon:'🎉' },
+  };
+
+  // ── Group card (overview) ──────────────────────────────────
+  function makeGroupCard(cat, items) {
+    const cfg = catConfig[cat];
+    // Prefer an image as cover if one exists
+    const cover = items.find(i => i.type === 'image') || items[0];
+    const count = items.length;
+    const vidCount = items.filter(i=>i.type==='video').length;
+    const imgCount = items.filter(i=>i.type==='image').length;
+    const countLabel = [
+      vidCount ? `${vidCount} video${vidCount>1?'s':''}` : '',
+      imgCount ? `${imgCount} photo${imgCount>1?'s':''}` : ''
+    ].filter(Boolean).join(' · ');
+
+    const inner = cover.type === 'video'
+      ? `<video src="${cover.src}" muted playsinline preload="metadata"
+           onmouseenter="this.play().catch(()=>{})"
+           onmouseleave="this.pause();this.currentTime=0;"></video>`
+      : `<img src="${cover.src}" alt="${cover.title}" loading="lazy" />`;
+
+    return `
+      <button class="group-card" data-group="${cat}" style="aspect-ratio:4/3">
+        ${inner}
+        <div class="mc-grad"></div>
+        <div class="mc-play"><div class="play-ring">${cfg.icon}</div></div>
+        <span class="group-badge">${count} pieces</span>
+        <div class="mc-meta">
+          <div class="mc-title">${cfg.label} <em style="color:var(--gold)">${cfg.em}</em></div>
+          <div class="mc-cat">${countLabel} · tap to explore</div>
+        </div>
+      </button>`;
+  }
+
+  // ── Render gallery grid ────────────────────────────────────
+  const grid = document.getElementById('galleryGrid');
+  let activeCat = 'all';
+
   function render() {
     if (activeCat !== 'all') {
-      // Single category — show individual cards
-      const list = videos.filter(v => v.category === activeCat);
-      grid.innerHTML = list.map(v => makeVideoCard(v)).join('');
-      grid.querySelectorAll('.video-card').forEach(card => {
-        card.addEventListener('click', () => openLightbox(card.dataset.id));
-      });
+      const list = mediaItems.filter(m => m.category === activeCat);
+      grid.innerHTML = list.map(m => makeCard(m)).join('');
+      attachCardListeners(grid);
     } else {
-      // "All" — show one group card per category
       const cats = Object.keys(catConfig);
       grid.innerHTML = cats.map(cat => {
-        const catVideos = videos.filter(v => v.category === cat);
-        return catVideos.length ? makeGroupCard(cat, catVideos) : '';
+        const items = mediaItems.filter(m => m.category === cat);
+        return items.length ? makeGroupCard(cat, items) : '';
       }).join('');
       grid.querySelectorAll('.group-card').forEach(card => {
         card.addEventListener('click', () => openGroupExpand(card.dataset.group));
       });
     }
   }
+
+  function attachCardListeners(container) {
+    container.querySelectorAll('.media-card').forEach(card => {
+      card.addEventListener('click', () => openLightbox(card.dataset.id));
+    });
+  }
+
   render();
 
   document.querySelectorAll('#filters .filter').forEach(b => {
@@ -740,19 +938,19 @@
     });
   });
 
-  // GROUP EXPAND
-  const ge = document.getElementById('groupExpand');
-  const geGrid = document.getElementById('groupExpandGrid');
+  // ── GROUP EXPAND ───────────────────────────────────────────
+  const ge    = document.getElementById('groupExpand');
+  const geGrid  = document.getElementById('groupExpandGrid');
   const geTitle = document.getElementById('groupExpandTitle');
+
+  let currentGroupItems = [];
 
   function openGroupExpand(cat) {
     const cfg = catConfig[cat];
-    const catVideos = videos.filter(v => v.category === cat);
+    currentGroupItems = mediaItems.filter(m => m.category === cat);
     geTitle.innerHTML = `${cfg.label} <em>${cfg.em}</em>`;
-    geGrid.innerHTML = catVideos.map(v => makeVideoCard(v)).join('');
-    geGrid.querySelectorAll('.video-card').forEach(card => {
-      card.addEventListener('click', () => openLightbox(card.dataset.id));
-    });
+    geGrid.innerHTML = currentGroupItems.map(m => makeCard(m)).join('');
+    attachCardListeners(geGrid);
     ge.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -762,28 +960,73 @@
     geGrid.querySelectorAll('video').forEach(v => { v.pause(); v.currentTime = 0; });
   }
   document.getElementById('groupExpandClose').addEventListener('click', closeGroupExpand);
-  window.addEventListener('keydown', e => { if (e.key === 'Escape') { closeGroupExpand(); closeLightbox(); } });
 
-  // LIGHTBOX
-  const lb = document.getElementById('lightbox');
-  const lbVideo = document.getElementById('lightboxVideo');
-  const lbTitle = document.getElementById('lbTitle');
-  const lbCat = document.getElementById('lbCat');
-  function openLightbox(id) {
-    const v = videos.find(x => x.id === id); if (!v) return;
-    lbVideo.src = v.src; lbTitle.textContent = v.title; lbCat.textContent = v.category;
-    lb.classList.add('open'); document.body.style.overflow = 'hidden';
-    lbVideo.play().catch(()=>{});
+  // ── LIGHTBOX ───────────────────────────────────────────────
+  const lb         = document.getElementById('lightbox');
+  const lbVideo    = document.getElementById('lightboxVideo');
+  const lbImgWrap  = document.getElementById('lightboxImgWrap');
+  const lbImg      = document.getElementById('lightboxImg');
+  const lbTitle    = document.getElementById('lbTitle');
+  const lbCat      = document.getElementById('lbCat');
+
+  let lbCurrentId  = null;
+  let lbPool       = [];   // the array we're browsing (all or filtered)
+
+  function openLightbox(id, pool) {
+    lbPool = pool || (activeCat === 'all' ? mediaItems : mediaItems.filter(m => m.category === activeCat));
+    const item = lbPool.find(x => x.id === id);
+    if (!item) return;
+    lbCurrentId = id;
+
+    lbTitle.textContent = item.title;
+    lbCat.textContent   = item.category;
+
+    if (item.type === 'video') {
+      lbVideo.src = item.src;
+      lbVideo.style.display = '';
+      lbImgWrap.style.display = 'none';
+      lbVideo.play().catch(() => {});
+    } else {
+      lbImg.src = item.src;
+      lbImg.alt = item.title;
+      lbImgWrap.style.display = '';
+      lbVideo.style.display = 'none';
+    }
+
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
+
   function closeLightbox() {
-    lb.classList.remove('open'); lbVideo.pause(); lbVideo.removeAttribute('src'); lbVideo.load();
+    lb.classList.remove('open');
+    lbVideo.pause();
+    lbVideo.removeAttribute('src');
+    lbVideo.load();
+    lbImg.removeAttribute('src');
     document.body.style.overflow = '';
+    lbCurrentId = null;
   }
+
+  function stepLightbox(dir) {
+    if (!lbCurrentId || !lbPool.length) return;
+    const idx = lbPool.findIndex(x => x.id === lbCurrentId);
+    const next = lbPool[(idx + dir + lbPool.length) % lbPool.length];
+    openLightbox(next.id, lbPool);
+  }
+
   document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbPrev').addEventListener('click', () => stepLightbox(-1));
+  document.getElementById('lbNext').addEventListener('click', () => stepLightbox(1));
   lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
   document.getElementById('lightboxInner').addEventListener('click', e => e.stopPropagation());
 
-  // BOOK FORM → WhatsApp
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape')       { closeGroupExpand(); closeLightbox(); }
+    if (e.key === 'ArrowLeft')    stepLightbox(-1);
+    if (e.key === 'ArrowRight')   stepLightbox(1);
+  });
+
+  // ── BOOK FORM → WhatsApp ───────────────────────────────────
   document.getElementById('bookForm').addEventListener('submit', e => {
     e.preventDefault();
     const f = e.target;
@@ -799,46 +1042,30 @@
     window.open(`https://wa.me/233547602000?text=${text}`, '_blank');
   });
 
-  // TAB SWITCHING - Hide/Show sections
-  const gallerySection = document.getElementById('gallery');
-  const aboutSection = document.getElementById('about');
-  const pricingSection = document.getElementById('pricing');
-  const contactSection = document.getElementById('contact');
-  const bookSection = document.getElementById('book');
-  const testimonialsSection = document.getElementById('testimonials');
-
-  // Sections that belong only to specific tabs (not homepage)
+  // ── TAB SWITCHING ──────────────────────────────────────────
+  const gallerySection     = document.getElementById('gallery');
+  const aboutSection       = document.getElementById('about');
+  const pricingSection     = document.getElementById('pricing');
+  const contactSection     = document.getElementById('contact');
+  const bookSection        = document.getElementById('book');
+  const testimonialsSection= document.getElementById('testimonials');
   const tabSections = [gallerySection, aboutSection, pricingSection, contactSection, bookSection];
-
-  // Hide non-home sections on load; home (hero, stats, services, testimonials) visible
   tabSections.forEach(s => { if (s) s.style.display = 'none'; });
 
-  // Track current tab
   let currentTab = 'home';
-
   const links = document.querySelectorAll('.nav-links a');
 
   function switchTab(target) {
     currentTab = target;
-
-    // Update active link
     links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + target));
-
-    // Show/hide sections
-    gallerySection.style.display = target === 'gallery' ? 'block' : 'none';
-    aboutSection.style.display = target === 'about' ? 'block' : 'none';
-    pricingSection.style.display = target === 'pricing' ? 'block' : 'none';
-    contactSection.style.display = target === 'contact' ? 'block' : 'none';
-    bookSection.style.display = target === 'book' ? 'block' : 'none';
-
-    // Testimonials only visible on homepage
-    if (testimonialsSection) {
+    gallerySection.style.display  = target === 'gallery'  ? 'block' : 'none';
+    aboutSection.style.display    = target === 'about'    ? 'block' : 'none';
+    pricingSection.style.display  = target === 'pricing'  ? 'block' : 'none';
+    contactSection.style.display  = target === 'contact'  ? 'block' : 'none';
+    bookSection.style.display     = target === 'book'     ? 'block' : 'none';
+    if (testimonialsSection)
       testimonialsSection.style.display = target === 'home' ? '' : 'none';
-    }
-
-    // Show homepage sections (hero/stats/services) only on home tab
-    const homeSections = ['home', 'services'];
-    homeSections.forEach(id => {
+    ['home','services'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.style.display = target === 'home' ? '' : 'none';
     });
@@ -849,21 +1076,15 @@
   }
 
   links.forEach(link => {
-    link.addEventListener('click', (e) => {
-      const target = link.getAttribute('href').substring(1);
-      switchTab(target);
+    link.addEventListener('click', () => {
+      switchTab(link.getAttribute('href').substring(1));
     });
   });
-
-  // Also handle mobile menu clicks
   mobileMenu.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => {
-      const target = a.getAttribute('href').substring(1);
-      switchTab(target);
+      switchTab(a.getAttribute('href').substring(1));
     });
   });
-
-  // Handle hero CTAs and any in-page links
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (!a.closest('.nav-links') && !a.closest('#mobileMenu')) {
       a.addEventListener('click', () => {
@@ -876,7 +1097,6 @@
     }
   });
 
-  // Set Home as active on load
   switchTab('home');
 </script>
 </body>
